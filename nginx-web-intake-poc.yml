@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: intake-poc-ingress
+  namespace: dev-frontend
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: ""
+spec:
+  ingressClassName: nginx  # Specify NGINX ingress class
+  rules:
+    - http:
+        paths:
+          - path: /intakePath/
+            pathType: Prefix
+            backend:
+              service:
+                name: intake-poc
+                port:
+                  number: 80
